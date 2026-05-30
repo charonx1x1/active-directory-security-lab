@@ -1,0 +1,28 @@
+# Virtual machines and disks
+*.vdi
+*.vmdk
+*.vbox
+*.vbox-prev
+*.ova
+*.ovf
+*.iso
+
+# VirtualBox snapshots and logs
+Snapshots/
+Logs/
+*.log
+
+# Windows temporary files
+Thumbs.db
+Desktop.ini
+
+# Secrets and credentials
+secrets.txt
+passwords.txt
+*.key
+*.pem
+*.pfx
+
+# Large local folders
+ISOs/
+VMs/
