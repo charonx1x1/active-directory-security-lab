@@ -36,7 +36,9 @@ The goal is to build a realistic lab to learn Active Directory administration, W
 - [x] Created CLIENT01 virtual machine
 - [x] Joined CLIENT01 to the lab.local domain
 - [x] Moved CLIENT01 to the Workstations OU
-- [ ] Create first Group Policy Object
+- [x] Created first Group Policy Object
+- [x] Applied security baseline GPO to Workstations OU
+- [x] Verified GPO application on CLIENT01
 - [ ] Configure shared folders and permissions
 - [ ] Add Kali Linux for security testing
 - [ ] Perform Active Directory enumeration
@@ -53,6 +55,8 @@ The goal is to build a realistic lab to learn Active Directory administration, W
 - PowerShell administration
 - VirtualBox networking
 - Technical documentation
+- Group Policy management
+- Windows security baseline configuration
 
 ## Repository Structure
 
