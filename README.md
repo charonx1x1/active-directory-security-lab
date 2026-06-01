@@ -39,24 +39,53 @@ The goal is to build a realistic lab to learn Active Directory administration, W
 - [x] Created first Group Policy Object
 - [x] Applied security baseline GPO to Workstations OU
 - [x] Verified GPO application on CLIENT01
-- [ ] Configure shared folders and permissions
+- [x] Configure shared folders and permissions
 - [ ] Add Kali Linux for security testing
 - [ ] Perform Active Directory enumeration
 - [ ] Apply hardening measures
 
 ## Skills Practiced
 
-- Windows Server administration
-- Active Directory Domain Services
-- DNS configuration
-- Organizational Units management
-- Domain users and groups
-- Domain-joined workstations
-- PowerShell administration
-- VirtualBox networking
-- Technical documentation
-- Group Policy management
-- Windows security baseline configuration
+* Windows Server administration
+* Active Directory Domain Services
+* DNS configuration
+* Organizational Units management
+* Domain users and groups
+* Domain-joined workstations
+* Group Policy management
+* SMB shared folders
+* NTFS and share permissions
+* Active Directory access control
+* AGDLP permission model
+* PowerShell administration
+* VirtualBox networking
+* Technical documentation
+
+
+## Shared Folders and Permissions
+
+Department-based shared folders were created on DC01 and access was managed using Active Directory security groups.
+
+| Share            | Access Group  | Example Authorized User |
+| ---------------- | ------------- | ----------------------- |
+| `\\DC01\IT`      | DL_IT_RW      | alice.martin            |
+| `\\DC01\HR`      | DL_HR_RW      | sophie.bernard          |
+| `\\DC01\Finance` | DL_Finance_RW | karim.amrani            |
+| `\\DC01\Sales`   | DL_Sales_RW   | lucas.moreau            |
+| `\\DC01\Public`  | DL_Public_RW  | All department groups   |
+
+The lab uses a simplified AGDLP model:
+
+```text
+User Accounts → Global Groups → Domain Local Groups → Permissions
+```
+
+Example:
+
+```text
+karim.amrani → GG_Finance → DL_Finance_RW → \\DC01\Finance
+```
+
 
 ## Repository Structure
 
