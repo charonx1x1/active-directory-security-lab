@@ -2,95 +2,69 @@
 
 ## Overview
 
-This project simulates a small enterprise Active Directory environment using Windows Server 2022 and a Windows client machine.
+This project simulates a small enterprise Active Directory environment in a local VirtualBox lab.
 
-The goal is to build a realistic lab to learn Active Directory administration, Windows networking, domain authentication, Group Policy management, and later attack-and-defense scenarios in a controlled environment.
+The goal is to learn Active Directory administration, Windows domain management, SMB permissions, Group Policy, and basic Active Directory security enumeration.
 
-## Current Architecture
+## Architecture
 
-| Machine | Role | IP Address | OS |
-|---|---|---|---|
-| DC01 | Domain Controller, DNS Server | 10.10.10.10 | Windows Server 2022 |
-| CLIENT01 | Domain-joined workstation | 10.10.10.20 | Windows 11 Enterprise |
+| Machine | Role | IP Address |
+|---|---|---|
+| DC01 | Domain Controller, DNS Server, SMB File Server | 10.10.10.10 |
+| CLIENT01 | Domain-joined workstation | 10.10.10.20 |
+| KALI01 | Security testing machine | 10.10.10.30 |
 
 ## Domain Information
 
 | Item | Value |
 |---|---|
-| Domain name | lab.local |
-| NetBIOS name | LAB |
+| Domain | lab.local |
+| NetBIOS | LAB |
 | Network | 10.10.10.0/24 |
-| VirtualBox Network | Internal Network: AD-LAB |
+| VirtualBox Network | AD-LAB |
 
-## Current Progress
+## Completed Steps
 
-- [x] Created DC01 virtual machine
-- [x] Installed Windows Server 2022
-- [x] Configured static IP address on DC01
+- [x] Created and configured DC01
 - [x] Installed Active Directory Domain Services
-- [x] Promoted DC01 as Domain Controller
-- [x] Created the lab.local domain
-- [x] Created Organizational Units
-- [x] Created domain users
-- [x] Created security groups
-- [x] Created CLIENT01 virtual machine
-- [x] Joined CLIENT01 to the lab.local domain
-- [x] Moved CLIENT01 to the Workstations OU
-- [x] Created first Group Policy Object
-- [x] Applied security baseline GPO to Workstations OU
-- [x] Verified GPO application on CLIENT01
-- [x] Configure shared folders and permissions
-- [ ] Add Kali Linux for security testing
-- [ ] Perform Active Directory enumeration
+- [x] Created the `lab.local` domain
+- [x] Created OUs, users and security groups
+- [x] Created and joined CLIENT01 to the domain
+- [x] Applied a first GPO to the Workstations OU
+- [x] Created SMB shared folders with AD-based permissions
+- [x] Added KALI01 to the lab network
+- [x] Performed initial AD enumeration
+- [x] Collected and analyzed AD data with SharpHound and BloodHound
+- [ ] Create intentional AD misconfigurations
+- [ ] Analyze attack paths with BloodHound
 - [ ] Apply hardening measures
+- [ ] Document detection and remediation steps
 
 ## Skills Practiced
 
-* Windows Server administration
-* Active Directory Domain Services
-* DNS configuration
-* Organizational Units management
-* Domain users and groups
-* Domain-joined workstations
-* Group Policy management
-* SMB shared folders
-* NTFS and share permissions
-* Active Directory access control
-* AGDLP permission model
-* PowerShell administration
-* VirtualBox networking
-* Technical documentation
-
-
-## Shared Folders and Permissions
-
-Department-based shared folders were created on DC01 and access was managed using Active Directory security groups.
-
-| Share            | Access Group  | Example Authorized User |
-| ---------------- | ------------- | ----------------------- |
-| `\\DC01\IT`      | DL_IT_RW      | alice.martin            |
-| `\\DC01\HR`      | DL_HR_RW      | sophie.bernard          |
-| `\\DC01\Finance` | DL_Finance_RW | karim.amrani            |
-| `\\DC01\Sales`   | DL_Sales_RW   | lucas.moreau            |
-| `\\DC01\Public`  | DL_Public_RW  | All department groups   |
-
-The lab uses a simplified AGDLP model:
-
-```text
-User Accounts → Global Groups → Domain Local Groups → Permissions
-```
-
-Example:
-
-```text
-karim.amrani → GG_Finance → DL_Finance_RW → \\DC01\Finance
-```
-
+- Windows Server administration
+- Active Directory Domain Services
+- DNS configuration
+- Organizational Units
+- Users and groups management
+- Group Policy management
+- SMB shares and permissions
+- AGDLP permission model
+- Kali Linux networking
+- Active Directory enumeration
+- SharpHound and BloodHound analysis
+- Technical documentation
 
 ## Repository Structure
 
 ```text
-docs/          Detailed documentation and notes
-scripts/       PowerShell scripts used in the lab
-screenshots/   Visual proof of configuration steps
-diagrams/      Lab architecture diagrams
+docs/          Detailed documentation
+scripts/       PowerShell scripts
+screenshots/   Screenshots and proof of work
+diagrams/      Architecture diagrams
+```
+
+## Security Note
+
+This lab is built for educational purposes only.  
+All testing is performed in an isolated local environment.
